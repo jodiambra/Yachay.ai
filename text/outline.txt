@@ -1,0 +1,14 @@
+# Project Outline
+
+    * take a random sample of the dataset (10,000), save that dataset to work with
+    * feature engineer dataset by extracting time data, and text features 
+    * process text data with model to get embeddings
+    * train model on embeddings alone for baseline
+    * append embeddings to dataframe
+    * train model on appended dataframe 
+    * statistical testing to see if the appended features increased predictions 
+
+# Ideas 
+
+    * collect several samples to workflow, run models on each
+    * increase batch size

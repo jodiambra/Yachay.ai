@@ -1,0 +1,10 @@
+streamlit
+pandas
+sklearn
+plotly_express
+numpy
+tensorflow
+keras 
+torch
+transformers
+math 
