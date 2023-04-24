@@ -12,3 +12,10 @@
 
     * collect several samples to workflow, run models on each
     * increase batch size
+    * cluster based on language
+
+
+# Model Evaluation 
+
+    * Target distance in literature is median : 326 km  , mean: 845
+    * clusters of the embeddings 
