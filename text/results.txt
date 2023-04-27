@@ -44,3 +44,30 @@ Epoch 80/200
 
 Epoch 5/5
 13307/13307 [==============================] - 214s 16ms/step - loss: 1420.9694 - mse: 155.2519 - val_loss: 1439.5067 - val_mse: 165.6082 - lr: 1.0000e-04
+
+
+
+# Knn on merge dataset
+    * test score
+            0.7082293311986634
+
+
+# KNN on Embeddings
+
+    * median(distances_km), mean(distances_km)
+    (1552.3600299060251, 1952.9490934691582)
+
+
+# KNN Base embeddings + features
+
+    * median(distances_km), mean(distances_km)
+    (1537.4916927071852, 1940.4483651173055)
+
+
+
+# MENET 3 inputs (6000, 3000)
+    * median(distances_km), mean(distances_km)
+        (1167.274791299305, 1717.4133200457486)
+
+    * 3697/3697 [==============================] - 73s 20ms/step - loss: 1517.8820 - mse: 318170.1250
+        [1517.8819580078125, 318170.125]    
