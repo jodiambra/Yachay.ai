@@ -23,6 +23,9 @@ from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassifica
 import math
 from sklearn.metrics.pairwise import haversine_distances
 from math import radians
+from streamlit.components.v1 import components
+import io 
+
 #----------------------------#
 # Upgrade streamlit library
 # pip install --upgrade streamlit
@@ -137,20 +140,24 @@ with col3:
 
 nlp = st.selectbox('pick nlp', ['base', 'multi', 'xlm'])
 
+y = pd.read_csv('inputs/y.csv')
+
+@st.cache_resource
+def load_dataset(path):
+    df = pd.read_csv(path)
+    return df
+
 if nlp=='base':
-    X_base = genfromtxt('processed data/X_base.csv', delimiter=',')
-    y_base= pd.read_csv('processed data/y_base.csv', header=None)
-    X_train, X_test, y_train, y_test = train_test_split(X_base, y_base, test_size=0.2, random_state=19)
+    X_base = load_dataset('inputs/X_base.csv')
+    X_train, X_test, y_train, y_test = train_test_split(X_base, y, test_size=0.2, random_state=19)
     st.success('You loaded the BERT Base features and test set', icon='👊')
 elif nlp=='multi':
-    X_multi = genfromtxt('processed data/X_multi.csv', delimiter=',')
-    y_multi = pd.read_csv('processed data/y_multi.csv', header=None)
-    X_train, X_test, y_train, y_test = train_test_split(X_multi, y_multi, test_size=0.2, random_state=19)
+    X_multi = load_dataset('inputs/X_multi.csv')
+    X_train, X_test, y_train, y_test = train_test_split(X_multi, y, test_size=0.2, random_state=19)
     st.success('You loaded the BERT Base Multilingual features and test set', icon='👌')
 elif nlp=='xlm':
-    X_xlm = genfromtxt('processed data/X_xlm.csv', delimiter=',')
-    y_xlm = pd.read_csv('processed data/y_xlm.csv', header=None)
-    X_train, X_test, y_train, y_test = train_test_split(X_xlm, y_xlm, test_size=0.2, random_state=19) 
+    X_xlm = load_dataset('inputs/X_xlm.csv')
+    X_train, X_test, y_train, y_test = train_test_split(X_xlm, y, test_size=0.2, random_state=19) 
     st.success('You loaded the XLM Roberta large features and test set', icon='👏')
 else:
     st.error('You did not load a processed dataset yet. Click a button above.', icon='👆')
@@ -298,24 +305,31 @@ st.title('')
 st.header('NLP Feature Engineering')
 # sentiment analysis
 st.subheader('Sentiment Analysis')
-sent = pd.read_csv('processed data/sent.csv', header=None)
+sent = pd.read_csv('inputs/sent.csv', header=None)
 sent_counts =sent[0].value_counts()
 st.plotly_chart(px.bar(sent_counts, color=sent_counts.index,  title='Tweet Sentiment', height=600, width=800, 
         template='plotly_dark', labels={'value': 'Sentiment'}))
 
 # Language detection
 st.subheader('Language Detection')
-language = pd.read_csv('processed data/language.csv', header=None)
+language = pd.read_csv('inputs/lan.csv', header=None)
 # counts of the different languages
 lan_counts = language[0].value_counts()
 st.plotly_chart(px.bar(lan_counts, color=lan_counts.index, title='Tweet Languages', height=800, width=1200, 
         template='plotly_white', labels={'index': 'Languages', 'value': 'Count'}), use_container_width=True)
 # Topics analysis
 st.subheader('Topics Analysis')
-topics = pd.read_csv('processed data/topics.csv', header=None)
+topics = pd.read_csv('inputs/topics.csv', header=None)
 topic_counts= topics[0].value_counts()
 st.plotly_chart(px.bar(topic_counts, color=topic_counts.index, title='Tweet Topics', height=800, width=1200, 
         template='plotly_dark', labels={'index': 'Topics', 'value': 'Count'}), use_container_width=True)
+
+# Name Entity analysis
+st.subheader('Name Entity Analysis')
+entity = pd.read_csv('inputs/ner.csv', header=None)
+entity_counts= entity[0].value_counts()
+st.plotly_chart(px.bar(entity_counts, color=entity_counts.index, title='Tweet Entities', height=800, width=1200, 
+        template='plotly_dark', labels={'index': 'Entities', 'value': 'Count'}), use_container_width=True)
 
 "---"
 #-----------------------------------#
