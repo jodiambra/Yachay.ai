@@ -38,7 +38,7 @@ def load_lottieurl(url: str):
 
 twitter_bird = load_lottieurl('https://assets6.lottiefiles.com/packages/lf20_nkf5e15x.json')
 
-st_lottie(twitter_bird, height=600, width=900, quality='high')
+st_lottie(twitter_bird, height=300, width=400, quality='high')
 
 st.write('Yachay is an open-source machine learning community with decades worth of natural language data from media,',
         'the dark web, legal proceedings, and government publications. They have cleaned and annotated the data, and',
