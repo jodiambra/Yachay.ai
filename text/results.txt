@@ -93,3 +93,18 @@ median(distances_km), mean(distances_km)
 
     median(distances_km), mean(distances_km)
     (1294.086134594043, 1433.5539950972407)
+
+# MENET 4 inputs (8000, 4000, 2000, 1000, 500) XLM merged
+
+    Epoch 20/20
+    13307/13307 [==============================] - 545s 41ms/step - loss: 1170.1051 - mse: 129.4722 - val_loss: 1193.4299 - val_mse: 131.9241 - lr: 1.0000e-06
+
+    # evaluation on test set
+    model.evaluate(X_test, y_test)
+    3697/3697 [==============================] - 45s 12ms/step - loss: 1184.4456 - mse: 131.5201
+    [1184.445556640625, 131.52012634277344]
+
+    median(distances_km), mean(distances_km)
+    (1223.2498909973372, 1823.45809293034)
+
+

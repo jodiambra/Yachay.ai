@@ -21,7 +21,9 @@ st.set_page_config(page_title='Yachay.ai Externship',
                    page_icon=icon,
                    layout='wide',
                    initial_sidebar_state="auto",
-                   menu_items=None)
+                   menu_items={'Get Help':'https://github.com/jodiambra/Yachay.ai',
+                               'About': 'https://www.linkedin.com/in/jodiambra/'}
+                    )
 
 
 st.title('Yachay.ai')
@@ -45,4 +47,8 @@ st.write('Yachay is an open-source machine learning community with decades worth
         'created a geolocation detection tool. They are looking for developers interested in contributing and improving', 
         'on the project. We are given a dataset of tweets, and another dataset of coordinates, upon which we will create',
         'a neural network to predict coordinates from text. ')
+
+
+# Display the link in Streamlit
+st.markdown("[![GitHub](https://img.shields.io/badge/GitHub-Repo-blue.svg)](https://github.com/jodiambra/Yachay.ai)", unsafe_allow_html=True)
 
