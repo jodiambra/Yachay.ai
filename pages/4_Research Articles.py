@@ -23,8 +23,8 @@ st.set_page_config(page_title='Yachay.ai Externship',
                    menu_items=None)
 
 
-st.title('Yachay.ai')
-st.header('Abstracts')
+st.title('Abstracts')
+
 
 st.subheader("")
 

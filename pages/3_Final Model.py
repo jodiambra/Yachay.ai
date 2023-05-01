@@ -56,6 +56,7 @@ def load_lottieurl(url: str):
 tweet = load_lottieurl('https://assets1.lottiefiles.com/packages/lf20_UAN5ABS6cI.json')
 
 st_lottie(tweet, height=600, width=900, quality='high')
+st.divider()
 
 #----------------------------------------------------------#
 
@@ -103,7 +104,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=19) # split 20% of data to make validation set
 
 #------------------------------------------------#
-
+st.subheader('Final Model')
 # load Final model
 final_model = st.button('Load the Final Model')
 
