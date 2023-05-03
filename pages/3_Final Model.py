@@ -44,7 +44,6 @@ st.set_page_config(page_title='Yachay.ai Externship',
                    menu_items=None)
 
 st.title('Yachay.ai')
-st.subheader('Final Model')
 
 # lottie Animation
 def load_lottieurl(url: str):
@@ -56,7 +55,7 @@ def load_lottieurl(url: str):
 tweet = load_lottieurl('https://assets1.lottiefiles.com/packages/lf20_UAN5ABS6cI.json')
 
 st_lottie(tweet, height=600, width=900, quality='high')
-st.divider()
+
 
 #----------------------------------------------------------#
 
@@ -104,6 +103,8 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=19) # split 20% of data to make validation set
 
 #------------------------------------------------#
+st.divider()
+
 st.subheader('Final Model')
 # load Final model
 final_model = st.button('Load the Final Model')
@@ -111,11 +112,14 @@ final_model = st.button('Load the Final Model')
 if final_model:
     # register the custom loss function
     tf.keras.utils.get_custom_objects()['loss_haversine'] = loss_haversine
-    model = load_models('models/xlm_merge_keras')
-    st.success('Model is Loaded')
+    
+    with st.spinner('Model is Loading.... Please be patient.'):
+        model = load_models('models/xlm_merge_keras')
+    
 
 
     # load history
+    st.success('Model is Loaded')
     history = pd.read_csv('history/history.csv')
 
     # Create separate figures for loss and accuracy
@@ -133,6 +137,7 @@ if final_model:
         fig_lr
 
     # evaluation on test set
+    
     
     st.subheader('Model Evaluation on Test Set: ')
     col7, col8 = st.columns(2)
