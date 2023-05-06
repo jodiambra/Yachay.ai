@@ -205,9 +205,7 @@ st.header('Artificial Neural Network')
 
 st.subheader('')
 first_layer = st.text_input('Hidden neurons in first layer', 2000)
-second_layer = st.text_input('Hidden neurons in second layer', 1000)
-third_layer = 
-fourth_layer = 
+second_layer = st.text_input('Hidden neurons in second layer', 1000) 
 epoch = st.select_slider('Select the number of epochs', [10, 50, 100, 200])
 
 run_models = st.button('Ready to Run', use_container_width=True)

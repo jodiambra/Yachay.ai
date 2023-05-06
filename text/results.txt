@@ -96,21 +96,19 @@ median(distances_km), mean(distances_km)
 
 # MENET 4 inputs (8000, 4000, 2000, 1000, 500) XLM merged
 
-    Epoch 25/25
-    13307/13307 [==============================] - 504s 38ms/step - loss: 1146.0917 - mse: 126.4708 - val_loss: 1186.7037 - val_mse: 131.1020 - lr: 1.0000e-08
-
-    
+    Epoch 18/25
+    13307/13307 [==============================] - 549s 41ms/step - loss: 1382.2212 - mse: 152.7064 - val_loss: 1404.6125 - val_mse: 155.1746 - lr: 1.0000e-09
 
 
 
     # evaluation on test set
 
     model.evaluate(X_test, y_test)
-    3697/3697 [==============================] - 39s 11ms/step - loss: 1178.1989 - mse: 130.7677
-    [1178.1988525390625, 130.7677001953125]
+    3697/3697 [==============================] - 49s 13ms/step - loss: 1394.0356 - mse: 154.4939
+    [1394.03564453125, 154.49392700195312]
     
-    median(distances_km), mean(distances_km)
-    (1224.022196662176, 1828.4744105742552)
+    median(distances_km[0]), mean(distances_km[0])
+    (1140.9667768518934, 1741.2438576317022)    
 
 
     +13 more epochs
@@ -141,3 +139,22 @@ median(distances_km), mean(distances_km)
 
 
 # MENET 4 inputs (8000, 4000, 2000, 1000, 500) XLM merged, -2 , 10 epochs
+
+# evaluation on test set
+model.evaluate(X_test, y_test)
+3697/3697 [==============================] - 45s 12ms/step - loss: 1421.2922 - mse: 272.9236
+[1421.292236328125, 272.92364501953125]
+
+median(distances_km), mean(distances_km)
+(1969.7604834971016, 2415.5925085799904)
+
+
+# MENET 4 inputs (8000, 4000, 2000, 1000, 500) XLM merged, -3 , 10 epochs
+
+# evaluation on test set
+model.evaluate(X_test, y_test)
+3697/3697 [==============================] - 41s 11ms/step - loss: 1237.2208 - mse: 155.9580
+[1237.2208251953125, 155.95797729492188]
+
+median(distances_km), mean(distances_km)
+(1566.356829403426, 1930.4781400623945)
