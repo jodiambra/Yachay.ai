@@ -142,11 +142,11 @@ median(distances_km), mean(distances_km)
 
 # evaluation on test set
 model.evaluate(X_test, y_test)
-3697/3697 [==============================] - 45s 12ms/step - loss: 1421.2922 - mse: 272.9236
-[1421.292236328125, 272.92364501953125]
+3697/3697 [==============================] - 42s 11ms/step - loss: 1455.1407 - mse: 1565.6957
+[1455.1407470703125, 1565.6956787109375]
 
-median(distances_km), mean(distances_km)
-(1969.7604834971016, 2415.5925085799904)
+median(distances_km[0]), mean(distances_km[0])
+(5969.3815824387475, 5943.147931571671)
 
 
 # MENET 4 inputs (8000, 4000, 2000, 1000, 500) XLM merged, -3 , 10 epochs
