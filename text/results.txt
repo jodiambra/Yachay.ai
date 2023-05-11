@@ -155,10 +155,25 @@ median(distances_km[0]), mean(distances_km[0])
 
 # MENET 4 inputs (8000, 4000, 2000, 1000, 500) XLM merged, -3 , 10 epochs
 
+Epoch 23/100
+71/71 [==============================] - 311s 4s/step - loss: nan - mse: nan - val_loss: nan - val_mse: nan - lr: 1.0000e-04
+
 # evaluation on test set
 model.evaluate(X_test, y_test)
-3697/3697 [==============================] - 41s 11ms/step - loss: 1237.2208 - mse: 155.9580
-[1237.2208251953125, 155.95797729492188]
+3697/3697 [==============================] - 42s 11ms/step - loss: nan - mse: nan
+[nan, nan]
 
-median(distances_km), mean(distances_km)
-(1566.356829403426, 1930.4781400623945)
+
+# MENET 4 inputs (8000, 4000, 2000, 1000, 500) XLM merged, -4 , 10 epochs
+
+Epoch 8/100
+71/71 [==============================] - 339s 5s/step - loss: 1435.2576 - mse: 173.4936 - val_loss: 1431.3468 - val_mse: 177.4530 - lr: 1.0000e-04
+
+
+# evaluation on test set
+model.evaluate(X_test, y_test)
+3697/3697 [==============================] - 42s 11ms/step - loss: 1421.2706 - mse: 176.5078
+[1421.2706298828125, 176.50778198242188]
+
+median(distances_km[0]), mean(distances_km[0])
+(1490.5859071213645, 1818.832853267065)
