@@ -140,10 +140,47 @@ if final_model:
 
     st.subheader('Model Evaluation on Test Set: ')
     col7, col8 = st.columns(2)
-    with col7:
-        col7.metric('Haversine Loss', 1414.400)
-    with col8:
-        col8.metric('MSE', 158.084)
+        col7.metric('Haversine Loss', round(model.evaluate(X_test, y_test)[0], 2))
+        col8.metric('MSE', round(model.evaluate(X_test, y_test)[1], 2))
+
+
+    # X test predictions
+    preds = model.predict(X_test)   
+
+    preds_df = pd.DataFrame(preds, columns=['lat_p', 'lng_p'])
+
+    # y test dataframe
+    y_df = y_test.reset_index(drop=True)
+
+    # concat test and prediction coordinates
+    coords = pd.concat([y_df, preds_df], axis=1)
+
+    # convert test set coordinates to radians   
+    y_test_rad = y_test * (math.pi/180)
+
+    # convert prediction coordinates to radians
+    preds_rad = preds * (math.pi/180)
+
+    # calculate distance
+    distances = haversine_distances(y_test_rad, preds_rad)[0]
+    distances_km = distances * (6371000/1000)
+    distances_mi = distances_km * 0.621371
+
+    st.title('')
+    tab1, tab2= st.tabs(['Kilometers', 'Miles'])
+    with tab1:
+        st.subheader('Kilometers')
+        st.write(px.bar(distances_km, title='Distances Between Actual and Prediction', labels={'value': 'Distance (Km)'}, 
+            template='plotly_dark', width=1300, height=800))
+
+        st.write(px.box(distances_km, title='Distribution of Distances', labels={'value': 'Distance (Km)'}, template='plotly_white', width=900, height=700))
+    with tab2:
+        st.subheader('Miles')
+        st.write(px.bar(distances_mi, title='Distances Between Actual and Prediction', labels={'value': 'Distance (mi)'}, 
+                template='plotly_dark', width=1300, height=800))
+
+        st.write(px.box(distances_mi, title='Distribution of Distances', labels={'value': 'Distance (mi)'}, template='plotly_white', width=900, height=700))
+  
 
     
 
