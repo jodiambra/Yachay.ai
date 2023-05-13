@@ -27,6 +27,7 @@ st.set_page_config(page_title='Yachay.ai Externship',
 
 
 st.title('Yachay.ai')
+"---"
 st.header('Text based geolocation prediction')
 
 # image1 = Image.open('images/tweet.png')

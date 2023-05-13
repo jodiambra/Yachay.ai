@@ -26,6 +26,7 @@ from math import radians
 from streamlit.components.v1 import components
 import io 
 
+
 #----------------------------#
 # Upgrade streamlit library
 # pip install --upgrade streamlit
@@ -39,78 +40,7 @@ st.set_page_config(page_title='Yachay.ai Externship',
                    initial_sidebar_state="auto",
                    menu_items=None)
 
-st.title('Yachay.ai')
-st.subheader('Tweet Geolocation Prediction')
-
-# read dataset
-df_main = pd.read_csv('data/Main_Dataset.csv',
-                      parse_dates=['timestamp'], index_col=['timestamp'])
-
-# sort by timestamp
-df_main.sort_index(inplace=True)
-
-# load cluster data
-df_cl = pd.read_csv('data/Clusters_Coordinates.csv')
-
-# Making timestamp features
-
-
-def make_features(data):
-    data['year'] = data.index.year
-    data['month'] = data.index.month
-    data['week'] = data.index.isocalendar().week
-    data['day'] = data.index.day
-    data['day_of_week'] = data.index.day_of_week
-    data['day_of_year'] = data.index.day_of_year
-    data['hour'] = data.index.hour
-    data['minute'] = data.index.minute
-    data['second'] = data.index.second
-
-
-make_features(df_main)
-
-
-# merge main and cluster coordinates
-df = df_main.merge(df_cl, on='cluster_id', sort=True)
-
-# drop missing values
-df.dropna(inplace=True)
-
-
-#------------------------------------------#
-
-# EDA section
-st.title('')
-st.subheader('Exploratory Data Analysis')
-columns = st.selectbox('Select Column', [
-                       'cluster_id', 'month', 'week', 'day', 'day_of_week', 'day_of_year', 'hour', 'minute', 'second', 'user_id'])
-
-@st.cache_data
-def plot_hist(df, columns):
-    fig = px.histogram(df[columns], title='Distribution of ' + str.upper(columns).replace(
-        '_', ' '), labels={'value': str(columns).replace('_', ' ')}, height=800, width=1200)
-    return fig
-
-
-st.plotly_chart(plot_hist(df, columns), use_container_width=True)
-
-"---"
-#--------------------#
-# Tweets dataframe
-st.title('')
-st.header('Tweets')
-
-# looking through tweets
-number = st.slider('Select Number of Tweets', 1, 1000, 10)
-
-@st.cache_data
-def tweet_lists(df, number):
-    tweets = df.text.tolist()
-    dataframe = tweets[:number]
-    return dataframe
-
-tweets = tweet_lists(df, number)
-st.dataframe(tweets, width=1500)
+st.title('Model Architecture')
 
 "---"
 #--------------------------#
@@ -123,6 +53,7 @@ st.write('We used a few pre-trained models to process our text into embeddings: 
         'resource intensity of processing text, we have provided a sample of 1,000 rows of pre-processed text with the various models.')
 st.subheader('')
 
+"---"
 
 #---------------------------# 
 # button columns for loading specific modeled data
@@ -298,41 +229,3 @@ if run_models:
 else:
     st.warning('Pick an NLP model first, change parameters, then click run', icon='🏃‍♂️') 
 
-#--------------------------------# 
-
-"---"
-st.title('')
-st.header('NLP Feature Engineering')
-# sentiment analysis
-st.subheader('Sentiment Analysis')
-sent = pd.read_csv('inputs/sent.csv', header=None)
-sent_counts =sent[0].value_counts()
-st.plotly_chart(px.bar(sent_counts, color=sent_counts.index,  title='Tweet Sentiment', height=600, width=800, 
-        template='plotly_dark', labels={'value': 'Sentiment'}))
-
-# Language detection
-st.subheader('Language Detection')
-language = pd.read_csv('inputs/lan.csv', header=None)
-# counts of the different languages
-lan_counts = language[0].value_counts()
-st.plotly_chart(px.bar(lan_counts, color=lan_counts.index, title='Tweet Languages', height=800, width=1200, 
-        template='plotly_white', labels={'index': 'Languages', 'value': 'Count'}), use_container_width=True)
-# Topics analysis
-st.subheader('Topics Analysis')
-topics = pd.read_csv('inputs/topics.csv', header=None)
-topic_counts= topics[0].value_counts()
-st.plotly_chart(px.bar(topic_counts, color=topic_counts.index, title='Tweet Topics', height=800, width=1200, 
-        template='plotly_dark', labels={'index': 'Topics', 'value': 'Count'}), use_container_width=True)
-
-# Name Entity analysis
-st.subheader('Name Entity Analysis')
-entity = pd.read_csv('inputs/ner.csv', header=None)
-entity_counts= entity[0].value_counts()
-st.plotly_chart(px.bar(entity_counts, color=entity_counts.index, title='Tweet Entities', height=800, width=1200, 
-        template='plotly_dark', labels={'index': 'Entities', 'value': 'Count'}), use_container_width=True)
-
-"---"
-#-----------------------------------#
-
-st.title('')
-st.subheader('Hypothesis Testing')
