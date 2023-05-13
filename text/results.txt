@@ -108,19 +108,7 @@ median(distances_km), mean(distances_km)
     (1146.0774355820258, 1753.802769967409)    
 
 
-    +13 more epochs
-
-    Epoch 13/25
-    13307/13307 [==============================] - 522s 39ms/step - loss: 1116.9065 - mse: 123.0778 - val_loss: 1178.4696 - val_mse: 130.0363 - lr: 1.0000e-10
-
-    # evaluation on test set
-
-    loaded_model.evaluate(X_test, y_test)
-    3697/3697 [==============================] - 45s 12ms/step - loss: 1171.1562 - mse: 129.9303
-    [1171.15625, 129.93028259277344]
-
-    median(distances_km), mean(distances_km)
-    (1234.4614703388052, 1839.5213106118451)
+    
 
 
 
