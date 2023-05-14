@@ -1,0 +1,2 @@
+*.csv filter=lfs diff=lfs merge=lfs -text
+notebook.ipynb filter=lfs diff=lfs merge=lfs -text
