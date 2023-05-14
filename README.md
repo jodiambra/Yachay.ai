@@ -50,3 +50,7 @@ Our results on the test set indicate a loss of 1414 Km and an MSE of 158. Overal
 In conclusion, the various features extracted from the data improved the predictions of our model. More hyperparameter tuning, could help to achieve a better result. A NER pipeline with better results would also likely increase the model performance. Furthermore, more data per user would also aid in improving the model, as some users wrote only a few tweets. Overall, Yachay could use this workflow to predict geolocations of tweets. 
 
 ---
+
+## [Web Notebook](https://jodiambra.github.io/Yachay.ai/)
+
+## [Website]
