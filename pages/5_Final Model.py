@@ -145,6 +145,14 @@ if final_model:
     with col8:
         col8.metric('MSE', 158.084)
 
+
+    st.subheader('Distance Differences from Actual: ')
+    col9, col10 = st.columns(2)
+    with col9:
+        col7.metric('Median', 1146)
+    with col10:
+        col8.metric('Mean', 1754)
+
     
 
 
