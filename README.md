@@ -18,10 +18,23 @@
         Pandas
         Streamlit
 
+---
 ## Purpose
 
 Yachay is an open-source machine learning community with decades worth of natural language data from media, the dark web, legal proceedings, and government publications. They have cleaned and annotated the data, and created a geolocation detection tool. They are looking for developers interested in contributing and improving on the project. We are given a dataset of tweets, and another dataset of coordinates, upon which we will create a neural network to predict coordinates from text. 
 
+---
+
+## Results
+
+![Alt text](images/loss.png)
+
+![Alt text](images/mse.png)
+
+![Alt text](images/distance.png)
+
+
+---
 ## Conclusions
 
 First, we processed the dataframe as a time series to extract the time features. Then we processed the tweets using several Hugging Face pre-trained models: BERT, BERT multilingual, and XLM RooERTa. We found that the embeddings made using XLM performed better on a base neural network predicting geolocations. 
@@ -35,3 +48,5 @@ Multiple Entry Neural Network (MENET) is a type of neural network architecture t
 Our results on the test set indicate a loss of 1414 Km and an MSE of 158. Overall distance predictions show a median and mean difference of 1146 and 1784 KMm, respectively.In trying to understand which features are most important, we found that removing the text feature led to the smallest increase in mean and median distances (1491, 1819). Cutting out the embeddings (6101, 6071) or the user ID (6279, 6229) branches led to a large increase in mean and median distances. We found that the model could not perform without the time features branch, as the loss and mse increased to infinity. 
 
 In conclusion, the various features extracted from the data improved the predictions of our model. More hyperparameter tuning, could help to achieve a better result. A NER pipeline with better results would also likely increase the model performance. Furthermore, more data per user would also aid in improving the model, as some users wrote only a few tweets. Overall, Yachay could use this workflow to predict geolocations of tweets. 
+
+---
