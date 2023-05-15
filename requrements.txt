@@ -11,3 +11,6 @@ math
 json
 requests
 streamlit_lottie
+pillow
+requests
+statistics

@@ -4,7 +4,6 @@ import pandas as pd
 import plotly_express as px
 from PIL import Image
 from streamlit.commands.page_config import Layout
-import numpy as np 
 from statistics import mode
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 

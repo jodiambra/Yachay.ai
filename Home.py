@@ -1,10 +1,7 @@
 #import packages
-import json
 import requests
 from streamlit_lottie import st_lottie
 import streamlit as st
-import pandas as pd
-import plotly_express as px
 from PIL import Image
 from streamlit.commands.page_config import Layout
 
